@@ -1,5 +1,4 @@
 
-package design2;
 // This file contains material supporting section 2.9 of the textbook:
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at http://www.site.uottawa.ca/school/research/lloseng/
@@ -44,17 +43,18 @@ public class PointCP2
    */
   public PointCP2(char type, double xOrRho, double yOrTheta)
   {
-    if(type != 'C' && type != 'P')
+    if(type != 'C' && type != 'P'){
       throw new IllegalArgumentException();
-
-    else if (type == 'C')
+    }
+    else if (type == 'C'){
       this.xOrRho = (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
       this.yOrTheta = yOrTheta;
-    ;
-    
+    }
+    else{
     this.xOrRho = xOrRho;
     this.yOrTheta = yOrTheta;
     typeCoord = type;
+    }
   }
 	
   
@@ -63,34 +63,23 @@ public class PointCP2
  
   public double getX()
   {
-    if(typeCoord == 'C') 
-      return xOrRho;
-    else 
       return (Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
   }
   
   public double getY()
   {
-    if(typeCoord == 'C') 
-      return yOrTheta;
-    else 
+
       return (Math.sin(Math.toRadians(yOrTheta)) * xOrRho);
   }
   
   public double getRho()
   {
-    if(typeCoord == 'P') 
-      return xOrRho;
-    else 
-      return (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
+    return xOrRho;
   }
   
   public double getTheta()
   {
-    if(typeCoord == 'P')
-      return yOrTheta;
-    else 
-      return Math.toDegrees(Math.atan2(yOrTheta, xOrRho));
+    return yOrTheta;
   }
   
 	
