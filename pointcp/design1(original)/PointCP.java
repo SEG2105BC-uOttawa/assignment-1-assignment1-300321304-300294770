@@ -24,7 +24,7 @@ public class PointCP
   
   /**
    * Contains the current value of X or RHO depending on the type
-   * of coordinates.
+   * of coordinates.  pp
    */
   private double xOrRho;
   
