@@ -13,7 +13,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP2
+public class PointCP3
 {
   //Instance variables ************************************************
 
@@ -41,15 +41,15 @@ public class PointCP2
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointCP2(char type, double xOrRho, double yOrTheta)
+  public PointCP3(char type, double xOrRho, double yOrTheta)
   {
     if(type != 'C' && type != 'P'){
       throw new IllegalArgumentException();
     }
-    else if (type == 'C'){
-      this.xOrRho = (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
-      this.yOrTheta = Math.atan((yOrTheta/xOrRho));
-      typeCoord = 'P';
+    else if (type == 'P'){
+      this.xOrRho = (Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
+      this.yOrTheta =(Math.sin(Math.toRadians(yOrTheta)) * xOrRho);
+      typeCoord = 'C';
     }
     else{
     this.xOrRho = xOrRho;
@@ -64,23 +64,23 @@ public class PointCP2
  
   public double getX()
   {
-      return (Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
+      return xOrRho;
   }
   
   public double getY()
   {
 
-      return (Math.sin(Math.toRadians(yOrTheta)) * xOrRho);
+      return yOrTheta;
   }
   
   public double getRho()
   {
-    return xOrRho;
+    return (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
   }
   
   public double getTheta()
   {
-    return yOrTheta;
+    return Math.atan((yOrTheta/xOrRho));
   }
   
 	
@@ -96,7 +96,7 @@ public class PointCP2
       yOrTheta = getTheta();
       xOrRho = temp;
       
-      typeCoord = 'P';  //Change coord type identifier
+ 
     }
   }
 	
@@ -112,7 +112,6 @@ public class PointCP2
       yOrTheta = getY();
       xOrRho = temp;
    
-      typeCoord = 'C';	//Change coord type identifier
     }
   }
 
@@ -143,13 +142,13 @@ public class PointCP2
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointCP2 rotatePoint(double rotation)
+  public PointCP3 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
         
-    return new PointCP2('C',
+    return new PointCP3('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
