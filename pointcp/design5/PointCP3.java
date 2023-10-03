@@ -13,7 +13,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP3
+public class PointCP3 extends PointCP5
 {
   //Instance variables ************************************************
 
@@ -61,23 +61,26 @@ public class PointCP3
   
   //Instance methods **************************************************
  
- 
+ @Override
   public double getX()
   {
       return xOrRho;
   }
   
+  @Override
   public double getY()
   {
 
       return yOrTheta;
   }
   
+  @Override
   public double getRho()
   {
     return (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
   }
   
+  @Override
   public double getTheta()
   {
     return Math.atan((yOrTheta/xOrRho));
@@ -87,7 +90,7 @@ public class PointCP3
  /**
    * Converts Cartesian coordinates to Polar coordinates.
    */
-
+  @Override
   public PointCP2 convertStorageToPolar()
   {
 
@@ -98,6 +101,7 @@ public class PointCP3
   /**
    * Converts Polar coordinates to Cartesian coordinates.
    */
+  @Override
   public PointCP3 convertStorageToCartesian()
   {
     return new PointCP3(typeCoord, xOrRho, yOrTheta);

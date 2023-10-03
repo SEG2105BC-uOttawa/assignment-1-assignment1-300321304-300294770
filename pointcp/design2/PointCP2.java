@@ -84,19 +84,19 @@ public class PointCP2
   }
   
 	
- /**
-   * Converts Cartesian coordinates to Polar coordinates.
-   */
-  public void convertStorageToPolar()
-  {}
+
+  public PointCP2 convertStorageToPolar()
+  {
+    return new PointCP2(typeCoord, xOrRho, yOrTheta);
+  }
 	
   /**
    * Converts Polar coordinates to Cartesian coordinates.
    */
-  public void convertStorageToCartesian()
+
+  public PointCP3 convertStorageToCartesian()
   {
-       getX();
-       getY();
+    return new PointCP3(typeCoord, getX(), getY());
   }
 
 

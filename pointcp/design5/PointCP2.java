@@ -13,7 +13,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP3
+public class PointCP2 extends PointCP5
 {
   //Instance variables ************************************************
 
@@ -41,15 +41,15 @@ public class PointCP3
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointCP3(char type, double xOrRho, double yOrTheta)
+  public PointCP2(char type, double xOrRho, double yOrTheta)
   {
     if(type != 'C' && type != 'P'){
       throw new IllegalArgumentException();
     }
-    else if (type == 'P'){
-      this.xOrRho = (Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
-      this.yOrTheta =(Math.sin(Math.toRadians(yOrTheta)) * xOrRho);
-      typeCoord = 'C';
+    else if (type == 'C'){
+      this.xOrRho = (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
+      this.yOrTheta = Math.atan((yOrTheta/xOrRho));
+      typeCoord = 'P';
     }
     else{
     this.xOrRho = xOrRho;
@@ -61,26 +61,30 @@ public class PointCP3
   
   //Instance methods **************************************************
  
- 
+ @Override
   public double getX()
   {
-      return xOrRho;
+      return (Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
   }
   
+
+  @Override
   public double getY()
   {
 
-      return yOrTheta;
+      return (Math.sin(Math.toRadians(yOrTheta)) * xOrRho);
   }
   
   public double getRho()
   {
-    return (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
+    return xOrRho;
   }
   
+
+  @Override
   public double getTheta()
   {
-    return Math.atan((yOrTheta/xOrRho));
+    return yOrTheta;
   }
   
 	
@@ -88,19 +92,20 @@ public class PointCP3
    * Converts Cartesian coordinates to Polar coordinates.
    */
 
+  @Override
   public PointCP2 convertStorageToPolar()
   {
-
-     return new PointCP2(typeCoord, getRho(), getTheta());
-
+    return new PointCP2(typeCoord, xOrRho, yOrTheta);
   }
 	
   /**
    * Converts Polar coordinates to Cartesian coordinates.
    */
+
+  @Override
   public PointCP3 convertStorageToCartesian()
   {
-    return new PointCP3(typeCoord, xOrRho, yOrTheta);
+    return new PointCP3(typeCoord, getX(), getY());
   }
 
 
@@ -112,7 +117,7 @@ public class PointCP3
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(PointCP3 pointB)
+  public double getDistance(PointCP2 pointB)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
@@ -130,13 +135,13 @@ public class PointCP3
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointCP3 rotatePoint(double rotation)
+  public PointCP2 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
         
-    return new PointCP3('C',
+    return new PointCP2('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
