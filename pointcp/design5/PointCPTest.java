@@ -123,12 +123,12 @@ public class PointCPTest
     Arrays.sort(randomValP2);
 
     System.out.println(
-      "Random numbers for cartesian for PointCP " + randomValC0[5000000] +
-      "ns Random numbers for cartesian for PointCP2 " + randomValC1[5000000] +
-      "ns Random numbers for cartesian for PointCP3 " + randomValC2[5000000] +
-      "ns Random numbers for Polar for PointCP " + randomValP0[5000000] +
-      "ns Random numbers for Polar for PointCP2 " + randomValP1[5000000] +
-      "ns Random numbers for Polar for PointCP3 " + randomValP2[5000000] 
+      "Random numbers object constructor median time for cartesian for PointCP " + randomValC0[5000000] +
+      "ns \nRandom numbers object constructor median time for cartesian for PointCP2 " + randomValC1[5000000] +
+      "ns \nRandom numbers object constructor median time for cartesian for PointCP3 " + randomValC2[5000000] +
+      "ns \nRandom numbers object constructor median time for Polar for PointCP " + randomValP0[5000000] +
+      "ns \nRandom numbers object constructor median time for Polar for PointCP2 " + randomValP1[5000000] +
+      "ns \nRandom numbers object constructor median time for Polar for PointCP3 " + randomValP2[5000000] +"ns"
     );
   }
 
@@ -186,9 +186,9 @@ public class PointCPTest
   }
 
   System.out.println(
-    "Average method for PointCP " + averageMethodC0[5000000] +
-    "ns Average method PointCP2 " + averageMethodC1[5000000] +
-    "ns Average method for PointCP3 " + averageMethodC2[5000000]
+    "Median time for calling all the methods for PointCP " + averageMethodC0[5000000] +
+    "ns \nMedian time for calling all the methods for PointCP2 " + averageMethodC1[5000000] +
+    "ns \nMedian time for calling all the methods for PointCP3 " + averageMethodC2[5000000] +"ns"
   );
 
 
