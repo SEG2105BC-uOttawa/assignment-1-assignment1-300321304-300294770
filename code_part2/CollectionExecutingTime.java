@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import java.util.Vector;
 import java.util.Random;
 import java.util.Iterator;
@@ -67,11 +66,15 @@ public class CollectionExecutingTime{
 
         long firstTimeNano = arrayElapsedTime - beginTimer;
         long secondTimeNano = listOfArrayElapsedTime - arrayElapsedTime;
-        long thirdTimeNano = vectorElapsedTime - arrayElapsedTime;
+        long thirdTimeNano = arrayElapsedTime - vectorElapsedTime ;
 
-        long firstTimeSec = TimeUnit.NANOSECONDS.toSeconds(firstTimeNano);
-        long secondTimeSec = TimeUnit.NANOSECONDS.toSeconds(secondTimeNano);
-        long thirdTimeSec = TimeUnit.NANOSECONDS.toSeconds(thirdTimeNano);
+        //long firstTimeSec = TimeUnit.NANOSECONDS.toSeconds(firstTimeNano);
+        //long secondTimeSec = TimeUnit.NANOSECONDS.toSeconds(secondTimeNano);
+        //long thirdTimeSec = TimeUnit.NANOSECONDS.toSeconds(thirdTimeNano);
+
+        System.out.println("Array: " + firstTimeNano);
+        System.out.println("ArrayList: " +secondTimeNano);
+        System.out.print("Vector: " +thirdTimeNano);
 
     }
 }
