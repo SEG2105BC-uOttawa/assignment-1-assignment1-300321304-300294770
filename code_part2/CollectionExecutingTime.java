@@ -1,3 +1,5 @@
+// Everytime we run the code we always get 0 seconds... And whenever we increase the size our computers won't run it because we don't have enough memory
+
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Random;
